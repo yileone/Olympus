@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "ISO-8859-1"?>
+
+<!DOCTYPE controladores SYSTEM "dtds/controladores.dtd">
+
+<controladores>
+    
+	<objeto nombre="origenOid" clase="java.lang.String" valor="" ambito="global"/>
+    <objeto nombre="sensorOid" clase="java.lang.String" valor="" ambito="global"/>
+	<controlador nombre="tipochart">
+		<accion nombre="graficar" clase="com.jayktec.xyzOlympus.actions.ToJsonMsLine"/>
+		<accion nombre="importardatos"  clase="com.jayktec.xyzOlympus.actions.ImportDataActionReg" />
+	</controlador>
+	
+    <controlador nombre="atras">
+  		<accion nombre="volver" clase="com.jayktec.xyzOlympus.actions.CancelAction" />	
+  		<accion nombre="actualizar" clase="com.jayktec.xyzOlympus.actions.ToJsonMsLine" />
+  	</controlador>
+
+  	
+   <controlador nombre="accionescancelar">
+  		<accion nombre="cancelar" clase="com.jayktec.xyzOlympus.actions.CancelAction" />	
+  	</controlador>
+  	
+  	 <controlador nombre="reducirDatos">
+  		<accion nombre="reducirDatos" clase="com.jayktec.xyzOlympus.actions.ejecutarRegistroReducido"  confirmar="true" cuesta="true" descripcion="descripcionEjecutaReducido"/>	
+  	</controlador>
+  	
+  	<controlador nombre="ConfigureImportReg">
+		<accion nombre="ConfigurarDatosRegitros" clase="com.jayktec.xyzOlympus.actions.ConfigureImportActionReg"/>										
+		<accion nombre="cancel" clase="org.openxava.actions.CancelAction"/>
+	</controlador>
+    
+    <controlador nombre="ImportReg">
+		<accion nombre="import" cuesta="true" clase="com.jayktec.xyzOlympus.actions.ImportActionReg"/>										
+		<accion nombre="cancel" clase="org.openxava.actions.CancelAction"/>		
+	</controlador>
+	
+	<controlador nombre="Void"/>
+	
+</controladores>

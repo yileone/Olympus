@@ -1,0 +1,37 @@
+ {
+ 	"chart": {
+ 		"caption": "RAM Overload Indicator",
+ 		"upperlimit": "0",
+ 		"lowerlimit": "25",
+ 		"useColorNameAsValue": "1",
+ 		"placeValuesInside": "1",
+ 		"valueFontSize": "20",
+ 		"plottooltext": "<div id='valueDiv'>$value apps running</div>",
+ 		"is3donHover": "1",
+ 		"theme": "fint"
+ 	},
+ 	"colorrange": {
+ 		"color": [{
+ 			"minvalue": "0",
+ 			"maxvalue": "5",
+ 			"label": "Under Load",
+ 			"code": "#00ff00"
+ 		}, {
+ 			"minvalue": "5",
+ 			"maxvalue": "10",
+ 			"label": "Moderate Load",
+ 			"code": "#00cccc"
+ 		}, {
+ 			"minvalue": "10",
+ 			"maxvalue": "20",
+ 			"label": "Continuous Load",
+ 			"code": "#ff9900"
+ 		}, {
+ 			"minvalue": "20",
+ 			"maxvalue": "25",
+ 			"label": "Extremely Loaded",
+ 			"code": "#ff0000"
+ 		}]
+ 	},
+ 	"value": "9"
+ }

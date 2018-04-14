@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="i18n"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="src" path="xava"/>
+	<classpathentry kind="src" path="properties"/>
+	<classpathentry kind="src" path="persistence"/>
+	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/OpenXava"/>
+	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/gson-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jcommon-1.0.15.jar"/>
+	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jasperreports-6.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jasperreports-fonts-6.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jasperreports-javaflow-6.5.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
