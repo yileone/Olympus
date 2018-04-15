@@ -144,9 +144,7 @@ public class PropertiesManager implements java.io.Serializable {
 		PropertyDescriptor pd = null;		 
 		try {
 			pd = getPropertyDescriptor(propertyName);
-			System.out.println(" executeSets pd:"+pd);
 			met = pd.getWriteMethod();
-			System.out.println("executeSets met:"+met);
 			if (met == null) {
 				throw new PropertiesManagerException(
 						XavaResources.getString("read_only_property", propertyName, getTheClass()));
@@ -159,13 +157,8 @@ public class PropertiesManager implements java.io.Serializable {
 				value = mapToObject(pd.getPropertyType(), (Map) value);
 			}
 			Object[] arg = { value };
-			System.out.println("invocar");
 
-			System.out.println("executeSet object---> "+object);
-
-			System.out.println("executeSet ARG ---> "+arg);
 			met.invoke(object, arg);
-			System.out.println("salir met.invoke");
 		}
 		catch (PropertiesManagerException ex) {
 			throw ex;
@@ -342,9 +335,7 @@ public class PropertiesManager implements java.io.Serializable {
 		Iterator ipro = properties.entrySet().iterator();
 		while (ipro.hasNext()) {
 			Map.Entry e = (Map.Entry) ipro.next();
-			System.out.println("executeSets "+e.getKey()+" "+e.getValue());
 			executeSet((String) e.getKey(), e.getValue());
-			System.out.println("executeSets --- FIN ---");
 			
 		}
 	}

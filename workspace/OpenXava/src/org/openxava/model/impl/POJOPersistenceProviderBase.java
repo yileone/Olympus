@@ -151,10 +151,10 @@ abstract public class POJOPersistenceProviderBase implements IPersistenceProvide
 	public Object create(MetaModel metaModel, Map values)
 			throws CreateException, ValidationException, XavaException {		
 		try {			
-			System.out.println("create pojo persistence");
+			//System.out.println("create pojo persistence");
 			find(metaModel, values);			
 
-			System.out.println("sali create pojo persistence");
+			//System.out.println("sali create pojo persistence");
 			throw new DuplicateKeyException(XavaResources.getString("no_create_exists", metaModel.getName())); 
 		}
 		catch (DuplicateKeyException ex) {
@@ -167,12 +167,12 @@ abstract public class POJOPersistenceProviderBase implements IPersistenceProvide
 		try {
 			object = metaModel.getPOJOClass().newInstance();
 			PropertiesManager mp = new PropertiesManager(object);
-			System.out.println(" create pojo persistence 170");
+			//System.out.println(" create pojo persistence 170");
 			
 			removeCalculatedOnCreateValues(metaModel, values);
-			System.out.println(" sali create pojo persistence 170");
+			//System.out.println(" sali create pojo persistence 170");
 			mp.executeSets(values);	
-			System.out.println("objeto a persistir:"+object.getClass());
+			//System.out.println("objeto a persistir:"+object.getClass());
 			//(object.getClass())obje
 			persist(object);			
 			return object;
@@ -201,10 +201,10 @@ abstract public class POJOPersistenceProviderBase implements IPersistenceProvide
 	private void removeCalculatedOnCreateValues(MetaModel metaModel, Map values) throws XavaException { 
 		for (Iterator it = metaModel.getMetaPropertiesKey().iterator(); it.hasNext();) {
 			MetaProperty p = (MetaProperty) it.next();
-			System.out.println("removeCalculatedOnCreateValues");
+			//System.out.println("removeCalculatedOnCreateValues");
 			
 			if (p.hasCalculatorDefaultValueOnCreate()) {
-				System.out.println(p.getName());
+				//System.out.println(p.getName());
 				values.remove(p.getName());
 			}
 		}		
