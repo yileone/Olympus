@@ -93,7 +93,7 @@ public class ImportActionReg extends ViewBaseAction implements IChangeController
 					break;
 				}
 				String rawValue = fields.nextToken();
-				System.out.println("rawvalue:" + rawValue);
+				// System.out.println("rawvalue:" + rawValue);
 				if (!Is.empty(column.getNameInApp())) {
 					View moduleView = getPreviousView();
 					MetaProperty p = moduleView.getMetaModel().getMetaProperty(column.getNameInApp());
