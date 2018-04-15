@@ -3,17 +3,24 @@
  */
 package com.jayktec.batch.reportes;
 
-import java.text.*;
-import java.util.*;
+import java.text.ParseException;
+import java.util.Map;
 
-import com.jayktec.batch.*;
-import com.jayktec.controlador.*;
-import com.jayktec.controlador.Constantes.*;
-import com.jayktec.controller.*;
+import com.jayktec.batch.Ejecucion;
+import com.jayktec.controlador.Constantes;
+import com.jayktec.controlador.Constantes.Reporte;
+import com.jayktec.controller.Conexion;
 
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.export.*;
-import net.sf.jasperreports.export.*;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 
 /**
  * @author {Yisheng León Espinoza} 12 abr. 2018 www.jayktec.com.ve
@@ -23,7 +30,7 @@ public class EjecucionReportes extends Ejecucion {
 	private JasperReport reporte;
 	private Conexion conexion = new Conexion();
 	private Reporte tipoReporte = Constantes.Reporte.Pdf;
-	private java.util.Date ahora = new java.util.Date();
+	private final java.util.Date ahora = new java.util.Date();
 	private String destFile = this.getClass().toString() + ahora.getTime();
 	private Map<String, Object> parametroReporte = null;
 
@@ -40,6 +47,48 @@ public class EjecucionReportes extends Ejecucion {
 		JasperCompileManager.compileReportToFile(jrxml, jasper);
 	}
 
+	/**
+	 * @return the conexion
+	 */
+	public Conexion getConexion() {
+		return conexion;
+	}
+
+	/**
+	 * @return the destFile
+	 */
+	public String getDestFile() {
+		return destFile;
+	}
+
+	/**
+	 * @return the parametroReporte
+	 */
+	public Map<String, Object> getParametroReporte() {
+		return parametroReporte;
+	}
+
+	/**
+	 * @return the tipoReporte
+	 */
+	public Reporte getTipoReporte() {
+		return tipoReporte;
+	}
+
+	public void pdfExporter(JasperPrint jasperPrint) throws JRException {
+		final JRPdfExporter exporter = new JRPdfExporter();
+
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile + ".xls"));
+		final SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+		configuration.setOnePagePerSheet(true);
+		configuration.setDetectCellType(true);
+		configuration.setCollapseRowSpan(false);
+		exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 *
@@ -50,7 +99,7 @@ public class EjecucionReportes extends Ejecucion {
 		// TODO Auto-generated method stub
 		super.run();
 		try {
-			JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, getParametroReporte(),
+			final JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, getParametroReporte(),
 					conexion.getConexion());
 			if (getTipoReporte().equals(Constantes.Reporte.Pdf)) {
 				pdfExporter(jasperPrint);
@@ -58,37 +107,10 @@ public class EjecucionReportes extends Ejecucion {
 				xlsExporter(jasperPrint);
 			}
 
-		} catch (JRException e) {
+		} catch (final JRException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public void pdfExporter(JasperPrint jasperPrint) throws JRException {
-		new JRPdfExporter();
-		new SimplePdfExporterConfiguration();
-	}
-
-	public void xlsExporter(JasperPrint jasperPrint) throws JRException {
-		JRXlsExporter exporter = new JRXlsExporter();
-
-		// exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-		// exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile +
-		// ".xls"));
-		SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
-		configuration.setOnePagePerSheet(true);
-		configuration.setDetectCellType(true);
-		configuration.setCollapseRowSpan(false);
-		// exporter.setConfiguration(configuration);
-
-		exporter.exportReport();
-	}
-
-	/**
-	 * @return the conexion
-	 */
-	public Conexion getConexion() {
-		return conexion;
 	}
 
 	/**
@@ -100,10 +122,19 @@ public class EjecucionReportes extends Ejecucion {
 	}
 
 	/**
-	 * @return the tipoReporte
+	 * @param destFile
+	 *            the destFile to set
 	 */
-	public Reporte getTipoReporte() {
-		return tipoReporte;
+	public void setDestFile(String destFile) {
+		this.destFile = destFile;
+	}
+
+	/**
+	 * @param parametroReporte
+	 *            the parametroReporte to set
+	 */
+	public void setParametroReporte(Map<String, Object> parametroReporte) {
+		this.parametroReporte = parametroReporte;
 	}
 
 	/**
@@ -114,34 +145,18 @@ public class EjecucionReportes extends Ejecucion {
 		this.tipoReporte = tipoReporte;
 	}
 
-	/**
-	 * @return the destFile
-	 */
-	public String getDestFile() {
-		return destFile;
-	}
+	public void xlsExporter(JasperPrint jasperPrint) throws JRException {
+		final JRXlsExporter exporter = new JRXlsExporter();
 
-	/**
-	 * @param destFile
-	 *            the destFile to set
-	 */
-	public void setDestFile(String destFile) {
-		this.destFile = destFile;
-	}
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile + ".xls"));
+		final SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+		configuration.setOnePagePerSheet(true);
+		configuration.setDetectCellType(true);
+		configuration.setCollapseRowSpan(false);
+		exporter.setConfiguration(configuration);
 
-	/**
-	 * @return the parametroReporte
-	 */
-	public Map<String, Object> getParametroReporte() {
-		return parametroReporte;
-	}
-
-	/**
-	 * @param parametroReporte
-	 *            the parametroReporte to set
-	 */
-	public void setParametroReporte(Map<String, Object> parametroReporte) {
-		this.parametroReporte = parametroReporte;
+		exporter.exportReport();
 	}
 
 }
