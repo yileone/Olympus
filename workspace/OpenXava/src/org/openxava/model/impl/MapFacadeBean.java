@@ -17,13 +17,6 @@ import org.openxava.validators.*;
 import org.openxava.validators.hibernate.*;
 import org.openxava.validators.meta.*;
 
-/**
- * Implement the logic of MapFacade. <p>
- * 
- * 
- * @author Javier Paniza
- */
-
 public class MapFacadeBean implements IMapFacadeImpl, SessionBean {
 	
 	private static Log log = LogFactory.getLog(MapFacadeBean.class);
@@ -39,13 +32,13 @@ public class MapFacadeBean implements IMapFacadeImpl, SessionBean {
 		values = Maps.recursiveClone(values);
 		MetaModel metaModel = getMetaModel(modelName); 
 		try {
-			System.out.println("MapFacadeBean 1");
+			//System.out.println("MapFacadeBean 1");
 			beginTransaction(metaModel); 
-			System.out.println("MapFacadeBean 2: modelName "+modelName);
+			//System.out.println("MapFacadeBean 2: modelName "+modelName);
 			Object result = create(metaModel, values, null, null, null, 0, true); 
-			System.out.println("MapFacadeBean 3: modelName "+modelName);
+			//System.out.println("MapFacadeBean 3: modelName "+modelName);
 			commitTransaction(metaModel);		
-			System.out.println("MapFacadeBean 4: modelName "+modelName);
+			//System.out.println("MapFacadeBean 4: modelName "+modelName);
 			return result;
 		} 
 		catch (CreateException ex) {
@@ -789,61 +782,61 @@ public class MapFacadeBean implements IMapFacadeImpl, SessionBean {
 		throws CreateException, ValidationException, XavaException, RemoteException {
 		try {			
 			//removeReadOnlyFields(metaModel, values); // not remove the read only fields because it maybe needed initialized on create
-			System.out.println("==========================================");
-			System.out.println("CREATE");
+			//System.out.println("==========================================");
+			//System.out.println("CREATE");
 			removeReadOnlyWithFormulaFields(metaModel, values);
-			System.out.println("CREATE1");
+			//System.out.println("CREATE1");
 			removeCalculatedFields(metaModel, values); 	
-			System.out.println("CREATE2");
+			//System.out.println("CREATE2");
 			Messages validationErrors = new Messages();	
-			System.out.println("CREATE3");
+			//System.out.println("CREATE3");
 			validateExistRequired(validationErrors, metaModel, values, metaModelContainer != null);
-			System.out.println("CREATE4");
+			//System.out.println("CREATE4");
 			validate(validationErrors, metaModel, values, null, container, true);
-			System.out.println("CREATE5");
+			//System.out.println("CREATE5");
 			if (validateCollections) validateCollections(validationErrors, metaModel);
-			System.out.println("CREATE6");
+			//System.out.println("CREATE6");
 			removeViewProperties(metaModel, values); 
-			System.out.println("CREATE7");
+			//System.out.println("CREATE7");
 			if (validationErrors.contains()) {
-				System.out.println("CREATE8");
+				//System.out.println("CREATE8");
 				throw new ValidationException(validationErrors);			
 			}	
-			System.out.println("CREATE9");
-			System.out.println("metamodel:"+metaModel);
+			//System.out.println("CREATE9");
+			//System.out.println("metamodel:"+metaModel);
 			//TODO CABLEADO POR ELIMINAR
 			if (!metaModel.toString().equals("Registro"))
 			updateReferencedEntities(metaModel, values);
 			
-			System.out.println("CREATE10");
+			//System.out.println("CREATE10");
 			Map convertedValues = convertSubmapsInObject(metaModel, values); 
 			
 	
-			System.out.println("CREATE11");
+			//System.out.println("CREATE11");
 			Object newObject = null;			
 			if (container == null) { 
 
-				System.out.println("CREATE12");
+				//System.out.println("CREATE12");
 				newObject = getPersistenceProvider(metaModel).create(metaModel, convertedValues); 
-				System.out.println("pase create12");
+				//System.out.println("pase create12");
 			} 
 			else {							
 
-				System.out.println("CREATE13");
+				//System.out.println("CREATE13");
 				if (metaModelContainer == null) {
 
-					System.out.println("CREATE14");
+					//System.out.println("CREATE14");
 					metaModelContainer = metaModel.getMetaModelContainer();
 				}
 				if (number < 0) { 
 
-					System.out.println("CREATE15");
+					////System.out.println("CREATE15");
 					newObject = getPersistenceProvider(metaModel).create(metaModel, convertedValues); 
 					addToCollection(container, collectionName, newObject); 
 				}
 				else {
 
-					System.out.println("CREATE16");
+					//System.out.println("CREATE16");
 					newObject = getPersistenceProvider(metaModel).createAggregate( 
 						metaModel,
 						convertedValues,
@@ -1468,33 +1461,33 @@ public class MapFacadeBean implements IMapFacadeImpl, SessionBean {
 		Object values,
 		boolean creating) throws XavaException, RemoteException {			
 		try {	
-			System.out.println("validate dentro");
-			System.out.println("clase de values:"+values.getClass().toString());
-			System.out.println("memberName:"+memberName);
+			//System.out.println("validate dentro");
+			//System.out.println("clase de values:"+values.getClass().toString());
+			//System.out.println("memberName:"+memberName);
 			//TODO corregir barrabasada
 			if(!memberName.equals("sensor")&&!memberName.equals("origen"))
 			if (metaModel.containsMetaProperty(memberName)) {
-				System.out.println("validate dentro2");
+				//System.out.println("validate dentro2");
 				metaModel.getMetaProperty(memberName).validate(errors, values, creating); 
-				System.out.println("validate dentro3");
+				//System.out.println("validate dentro3");
 			} else
 				if (metaModel.containsMetaReference(memberName)) {
-					System.out.println("validate dentro4");
+					////System.out.println("validate dentro4");
 					MetaReference ref = metaModel.getMetaReference(memberName); 
-					System.out.println("validate dentro5");
+					//System.out.println("validate dentro5");
 					MetaModel referencedModel = ref.getMetaModelReferenced();
-					System.out.println("validate dentro6");
+					//System.out.println("validate dentro6");
 					Map mapValues = (Map) values;	
-					System.out.println("validate dentro7");
+					//System.out.println("validate dentro7");
 					if (referenceHasValue(mapValues)) {
-						System.out.println("validate dentro8");
+						//System.out.println("validate dentro8");
 						if (ref.isAggregate()) validate(errors, referencedModel, mapValues, mapValues, null, creating);
 					} else
 						if (metaModel
 							.getMetaReference(memberName)
 							.isRequired()) {
-							System.out.println("ESTA REQUERIDO  memberName "+memberName);
-							System.out.println("ESTA REQUERIDO  metaModel.getName()"+metaModel.getName());
+							//System.out.println("ESTA REQUERIDO  memberName "+memberName);
+							//System.out.println("ESTA REQUERIDO  metaModel.getName()"+metaModel.getName());
 							errors.add("required", memberName, metaModel.getName());
 						}
 						

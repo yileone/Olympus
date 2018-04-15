@@ -12,8 +12,6 @@ import org.openxava.util.*;
 import org.openxava.view.*;
 import org.openxava.web.*;
 
-import com.jayktec.controlador.*;
-import com.jayktec.persistencia.*;
 import com.jayktec.xyzOlympus.models.*;;
 
 /**
@@ -34,10 +32,6 @@ public class ImportActionReg extends ViewBaseAction implements IChangeController
 
 	@Override
 	public void execute() throws Exception {
-
-		System.out.println("TRUNCATE TABLE " + Constantes.TablaBD.REGISTRO);
-
-		BdManager.truncarTabla(Constantes.TablaBD.REGISTRO);
 
 		/*
 		 * System.out.

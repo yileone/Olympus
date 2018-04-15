@@ -109,23 +109,23 @@ public class MapFacade {
 	{
 		Assert.arg(modelName, values);					
 		try {	
-			System.out.println("VOY EN CREATE");
+			//System.out.println.out.println("VOY EN CREATE");
 			return getImpl(modelName).create(Users.getCurrentUserInfo(), modelName, values);
 		}
 		catch (RemoteException ex) {
 			annulImpl(modelName);
-			System.out.println("======= Fallo CREATE EN MapFacade");
-			System.out.println(ex.getMessage());
-			System.out.println("======= =====================================");
-			System.out.println(ex.getCause());
+			//System.out.println("======= Fallo CREATE EN MapFacade");
+			//System.out.println(ex.getMessage());
+			//System.out.println("======= =====================================");
+			//System.out.println(ex.getCause());
 			try {
 				return getImpl(modelName).create(Users.getCurrentUserInfo(), modelName, values);
 			}
 			catch (RemoteException rex) { 
-				System.out.println("======= Fallo CREATE EN MapFacade dentro del try segundo");
-				System.out.println(rex.getMessage());
-				System.out.println("======= =====================================");
-				System.out.println(rex.getCause());
+				//System.out.println("======= Fallo CREATE EN MapFacade dentro del try segundo");
+				//System.out.println(rex.getMessage());
+				//System.out.println("======= =====================================");
+				//System.out.println(rex.getCause());
 				throw new SystemException(rex);
 			}
 		}							
@@ -586,24 +586,24 @@ public class MapFacade {
 	public static Map getValues(String modelName, Object entity, Map memberNames)
 		throws XavaException, SystemException 
 	{		
-		System.out.println("****************12.11.1*********************");
+		//System.out.println("****************12.11.1*********************");
 		Assert.arg(modelName, entity, memberNames);
-		System.out.println("****************12.11.2*********************");
+		//System.out.println("****************12.11.2*********************");
 		try {
-			System.out.println("****************12.11.3*********************");
+			//System.out.println("****************12.11.3*********************");
 			return getImpl(modelName).getValues(Users.getCurrentUserInfo(), modelName, entity, memberNames);
 			
 		}
 		catch (RemoteException ex) {
-			System.out.println("****************12.11.4*********************");
+			//System.out.println("****************12.11.4*********************");
 			annulImpl(modelName);
-			System.out.println("****************12.11.5*********************");
+			//System.out.println("****************12.11.5*********************");
 			try {
-				System.out.println("****************12.11.6*********************");
+				//System.out.println("****************12.11.6*********************");
 				return getImpl(modelName).getValues(Users.getCurrentUserInfo(), modelName, entity, memberNames);
 			}
 			catch (RemoteException rex) {
-				System.out.println("****************12.11.RemoteException*********************");
+				//System.out.println("****************12.11.RemoteException*********************");
 				throw new SystemException(rex);
 			}	
 		}			
@@ -770,7 +770,7 @@ public class MapFacade {
 									
 	
 	private static IMapFacadeImpl getImpl(String modelName) throws SystemException {
-		System.out.println("****************12.11.7*********************");
+		//System.out.println("****************12.11.7*********************");
 		if (!usesEJB()) return getLocalImpl();
 		try {			
 			int idx = modelName.indexOf('.'); 

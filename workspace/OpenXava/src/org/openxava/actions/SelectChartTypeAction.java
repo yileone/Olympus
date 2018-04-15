@@ -23,14 +23,14 @@ public class SelectChartTypeAction extends ViewBaseAction {
 		chart.setChartType(Chart.ChartType.valueOf(chartType));
 		getView().setValue("chartType", chart.getChartType());
 		Charts.updateView(getRequest(), getView(), tab, chart); 
-		System.out.println("************************  OPENXAVA: ACTION--->SelectChartTypeAction    ********************************");
+		/*System.out.println("************************  OPENXAVA: ACTION--->SelectChartTypeAction    ********************************");
 		System.out.println("");
 		System.out.println("");
 		System.out.println("Chart.ChartType.valueOf(chartType)--->"+ chart.getChartType()+" /  getRequest()---->"+getRequest()+"   / getView---->  "+ getView());
 		System.out.println("");
 		System.out.println("");
 		System.out.println("****************************mdi mdi-chart-********************************");
-		chart.save(); 
+		*/chart.save(); 
 	}
 
 	public String getChartType() {
