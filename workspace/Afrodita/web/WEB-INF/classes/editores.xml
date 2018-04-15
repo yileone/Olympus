@@ -1,1 +1,0 @@
-<?xml version = "1.0" encoding = "ISO-8859-1"?><!DOCTYPE aplicacion SYSTEM "dtds/editores.dtd"><editores>     <editor  url="timeEditor.jsp" >        <para-estereotipo estereotipo="HORA_MINUTO"/>        <para-estereotipo estereotipo="HOUR_MINUTE"/>    </editor></editores>
