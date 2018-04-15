@@ -1,14 +1,13 @@
 package com.jayktec.traductor;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import java.io.*;
+import java.sql.*;
 import java.text.*;
 import java.util.*;
+import java.util.Date;
 
-import org.hibernate.context.internal.*;
-
-import com.google.gson.JsonIOException;
-import com.jayktec.controlador.Constantes;
+import com.google.gson.*;
+import com.jayktec.controlador.*;
 import com.jayktec.controlador.Constantes.*;
 import com.jayktec.persistencia.*;
 import com.jayktec.xyzOlympus.models.*;
@@ -143,7 +142,7 @@ public class ToJson {
 		iniciarXaxisName();
 		iniciarYaxisName();
 		crearEncabezado(getxName(), getyName());
-		System.out.println(encabezado);
+		// System.out.println(encabezado);
 	}
 
 	/**
@@ -162,39 +161,36 @@ public class ToJson {
 
 	public void crearEncabezado(String yAxisName, String xAxisName) {
 
-		this.encabezado = " { \"chart\": {" + " \"caption\": " + " \"" + origen.getNombre() + "-" + sensor.getNombre()
-				+ " \"" + "," + "\"xaxisname\":" + " \"" + this.getxAxisName() + "\"" + "," + "\"yaxisname\":" + " \""
-				+ this.getyAxisName() + "\"" + "," + "\"showvalues\":" + " \"" + this.getShowValues() + "\"" + ","
-				+ "\"numberprefix\":" + " \"" + this.getNumberPrefix() + "\"" + "," + "\"legendborderalpha\":" + " \""
-				+ this.getLegendborderalpha() + "\"" + "," + "\"showborder\":" + " \"" + this.getShowborder() + "\""
-				+ "," + "\"bgcolor\":" + " \"" + this.getBgColor() + "\"" + "," + "\"plotgradientcolor\":" + " \""
-				+ this.getPlotgradientcolor() + "\"" + "," + "\"showalternatehgridcolor\":" + " \""
-				+ this.getShowalternatehgridcolor() + "\"" + "," + "\"showplotborder\":" + " \""
-				+ this.getShowplotborder() + "\"" + "," + "\"labeldisplay\":" + " \"" + this.getLabeldisplay() + "\""
-				+ "," + "\"divlinecolor\":" + " \"" + this.getDivlinecolor() + "\"" + "," + "\"showcanvasborder\":"
-				+ " \"" + this.getShowcanvasborder() + "\"" + "," + "\"canvasborderalpha\":" + " \""
-				+ this.getCanvasborderalpha() + "\"" + "," + "\"legendshadow\":" + " \"" + this.getLegendshadow() + "\""
-				+ "," + "\"theme\": \"" + this.getTheme() + "\"" + "," + "\"showhovereffect\": \""
-				+ this.getShowhovereffect() + "\"" + "," + "\"numbersuffix\": \"" + this.getNumbersuffix() + "\"" + ","
-				+ "\"drawCrossLine\": \"" + this.getDrawCrossLine() + "\"" + "," + "\"crossLineAlpha\": \""
-				+ this.getCrossLineAlpha() + "\"" + "," + "\"crossLineColor\": \"" + this.getCrossLineColor() + "\""
-				+ "," + "\"ajustDiv\": \"" + this.getAjustDiv() + "\"" + "," + "\"yAxisMaxvalue\": \""
-				+ this.getyAxisMaxvalue() + "\"" + "," + "\"yAxisMinvalue\": \"" + this.getyAxisMinvalue() + "\"" + ","
-				+ "\"numDivLines\": \"" + this.getNumDivLines() + "\"" + "," + "\"numVDivLines\": \""
-				+ this.getNumVDivLines() + "\"" + "," + "\"vDivLineColor\": \"" + this.getvDivLineColor() + "\"" + ","
-				+ "\"VDivLineThickness\": \"" + this.getVDivLineThickness() + "\"" + "," + "\"VDivLineAlpha\": \""
-				+ this.getVDivLineAlpha() + "\"" + "," + "\"showAlternateVGridColor\": \""
-				+ this.getShowAlternateVGridColor() + "\"" + "," + "\"alternateVGridColor\": \""
-				+ this.getAlternateVGridColor() + "\"" + "," + "\"alternateVGridAlpha\": \""
-				+ this.getAlternateVGridAlpha() + "\"" + "," + "\"drawAnchors\": \"" + this.getDrawAnchors() + "\""
-				+ "," + "\"logoURL\": \"" + this.getLogoURL() + "\"" + "," + "\"logoScale\": \"" + this.getLogoScale()
-				+ "\"" + "," + "\"logoPosition\": \"" + this.getLogoPosition() + "\"" + "," + "\"logoAlpha\": \""
-				+ this.getLogoAlpha() + "\"" + "," + "\"exportenabled\": \"" + this.getExportenabled() + "\"" + ","
-				+ "\"exportatclient\": \"" + this.getExportatclient() + "\"" + "," + "\"exporthandler\": \""
-				+ this.getExporthandler() + "\"" + "," + "\"html5exporthandler\": \"" + this.getHtml5exporthandler()
-				+ "\"},";
+		encabezado = " { \"chart\": {" + " \"caption\": " + " \"" + origen.getNombre() + "-" + sensor.getNombre()
+				+ " \"" + "," + "\"xaxisname\":" + " \"" + getxAxisName() + "\"" + "," + "\"yaxisname\":" + " \""
+				+ getyAxisName() + "\"" + "," + "\"showvalues\":" + " \"" + getShowValues() + "\"" + ","
+				+ "\"numberprefix\":" + " \"" + getNumberPrefix() + "\"" + "," + "\"legendborderalpha\":" + " \""
+				+ getLegendborderalpha() + "\"" + "," + "\"showborder\":" + " \"" + getShowborder() + "\"" + ","
+				+ "\"bgcolor\":" + " \"" + getBgColor() + "\"" + "," + "\"plotgradientcolor\":" + " \""
+				+ getPlotgradientcolor() + "\"" + "," + "\"showalternatehgridcolor\":" + " \""
+				+ getShowalternatehgridcolor() + "\"" + "," + "\"showplotborder\":" + " \"" + getShowplotborder() + "\""
+				+ "," + "\"labeldisplay\":" + " \"" + getLabeldisplay() + "\"" + "," + "\"divlinecolor\":" + " \""
+				+ getDivlinecolor() + "\"" + "," + "\"showcanvasborder\":" + " \"" + getShowcanvasborder() + "\"" + ","
+				+ "\"canvasborderalpha\":" + " \"" + getCanvasborderalpha() + "\"" + "," + "\"legendshadow\":" + " \""
+				+ getLegendshadow() + "\"" + "," + "\"theme\": \"" + getTheme() + "\"" + "," + "\"showhovereffect\": \""
+				+ getShowhovereffect() + "\"" + "," + "\"numbersuffix\": \"" + getNumbersuffix() + "\"" + ","
+				+ "\"drawCrossLine\": \"" + getDrawCrossLine() + "\"" + "," + "\"crossLineAlpha\": \""
+				+ getCrossLineAlpha() + "\"" + "," + "\"crossLineColor\": \"" + getCrossLineColor() + "\"" + ","
+				+ "\"ajustDiv\": \"" + getAjustDiv() + "\"" + "," + "\"yAxisMaxvalue\": \"" + getyAxisMaxvalue() + "\""
+				+ "," + "\"yAxisMinvalue\": \"" + getyAxisMinvalue() + "\"" + "," + "\"numDivLines\": \""
+				+ getNumDivLines() + "\"" + "," + "\"numVDivLines\": \"" + getNumVDivLines() + "\"" + ","
+				+ "\"vDivLineColor\": \"" + getvDivLineColor() + "\"" + "," + "\"VDivLineThickness\": \""
+				+ getVDivLineThickness() + "\"" + "," + "\"VDivLineAlpha\": \"" + getVDivLineAlpha() + "\"" + ","
+				+ "\"showAlternateVGridColor\": \"" + getShowAlternateVGridColor() + "\"" + ","
+				+ "\"alternateVGridColor\": \"" + getAlternateVGridColor() + "\"" + "," + "\"alternateVGridAlpha\": \""
+				+ getAlternateVGridAlpha() + "\"" + "," + "\"drawAnchors\": \"" + getDrawAnchors() + "\"" + ","
+				+ "\"logoURL\": \"" + getLogoURL() + "\"" + "," + "\"logoScale\": \"" + getLogoScale() + "\"" + ","
+				+ "\"logoPosition\": \"" + getLogoPosition() + "\"" + "," + "\"logoAlpha\": \"" + getLogoAlpha() + "\""
+				+ "," + "\"exportenabled\": \"" + getExportenabled() + "\"" + "," + "\"exportatclient\": \""
+				+ getExportatclient() + "\"" + "," + "\"exporthandler\": \"" + getExporthandler() + "\"" + ","
+				+ "\"html5exporthandler\": \"" + getHtml5exporthandler() + "\"},";
 
-		System.out.println(encabezado);
+		// System.out.println(encabezado);
 	}
 
 	public void crearCategorias()
@@ -238,7 +234,6 @@ public class ToJson {
 	@SuppressWarnings("unchecked")
 	public float percentil(int valor, Catalogo mapa) {
 		if (valor < 100) {
-			float resp = 0f;
 			int count = ((int) Math.round(listaRegistro.size() * (valor * 0.01))) - 1;
 
 			final String bdOrder = mapa.getNombre();
@@ -247,8 +242,8 @@ public class ToJson {
 			Comparator<Registro> comparador = new Comparator<Registro>() {
 				@Override
 				public int compare(Registro o1, Registro o2) {
-					Registro r1 = (Registro) o1;
-					Registro r2 = (Registro) o2;
+					Registro r1 = o1;
+					Registro r2 = o2;
 					if (bdOrder.equals(Constantes.CampoRegistro.FLOAT1.campoBD()))
 						return Float.compare(r1.getRegistroFloat1(), r2.getRegistroFloat1());
 					if (bdOrder.equals(Constantes.CampoRegistro.FLOAT2.campoBD()))
@@ -347,7 +342,7 @@ public class ToJson {
 
 		}
 		categorias = categorias + "] } ],";
-		System.out.println(categorias);
+		// System.out.println(categorias);
 	}
 
 	public void creaDataset() throws SQLException
@@ -368,13 +363,15 @@ public class ToJson {
 			int countLista = listaRegistro.size();
 			String bd = mapaItem.getMapabd().getNombre();
 			if (!(bd.equals(campoCategoriaFecha.campoBD()) || bd.equals(campoCategoriaHora.campoBD()))) {
-				if (!primeraVez)
+				if (!primeraVez) {
 					serie = ",";
+				}
 				primeraVez = true;
 				serie = serie + "{\"seriesname\":  \"" + mapaItem.getMapaapp() + "\", \"data\": [";
 				for (Registro registro : listaRegistro) {
-					if (!primeraVez)
+					if (!primeraVez) {
 						serie = serie + ",";
+					}
 					serie = serie + " { \"value\":\"";
 
 					if (bd.equals(Constantes.CampoRegistro.FLOAT1.campoBD())) {
@@ -404,7 +401,7 @@ public class ToJson {
 				}
 				serie = serie + "]}" + crearSeriePercentil(countLista, percentil, mapaItem);
 				serie = serie + crearSerieUmbral(mapaItem);
-			//	serie = serie + crearSerieTendencia(mapaItem);
+				// serie = serie + crearSerieTendencia(mapaItem);
 				serie = serie + crearSerieMediaMovil(mapaItem);
 
 				setDataset(getDataset() + serie);
@@ -412,101 +409,8 @@ public class ToJson {
 			}
 		}
 		setDataset(getDataset() + "]}");
-		System.out.println(getDataset());
+		// System.out.println(getDataset());
 
-	}
-
-	/**
-	 * @param mapaItem
-	 * @return
-	 * @throws SQLException
-	 */
-	private String crearSerieTendencia(Mapa mapaItem) throws SQLException {
-		// TODO Auto-generated method stubnd
-		int countLista = listaRegistro.size();
-		int countTendencia = listaTendencia.size();
-		String serie = "";
-		boolean pVez = true;
-		boolean haytendencia = false;
-		float tendencia = 0f;
-		listaRegistro.get(0).getRegistroDate1();
-		Calendar inicio = Calendar.getInstance();
-
-		inicio.setTime(listaRegistro.get(0).getRegistroDate1());
-
-		int dayOfWeek = diaMysql(inicio.get(Calendar.DAY_OF_WEEK));
-		inicio.setTime(listaRegistro.get(0).getRegistrotime1());
-
-		int hourOfWeek = inicio.get(Calendar.HOUR);
-
-		Calendar fin = Calendar.getInstance();
-
-		fin.setTime(listaRegistro.get(countLista - 1).getRegistroDate1());
-
-		ArrayList<Tendencia> temp = (ArrayList<Tendencia>) listaTendencia.clone();
-		ArrayList<Tendencia> tendenciaFinal = new ArrayList<Tendencia>();
-
-		for (Tendencia tenTemp : temp) {
-			if (haytendencia) {
-				tendenciaFinal.add(tenTemp);
-			} else
-
-			if (tenTemp.getDia() == dayOfWeek && tenTemp.getHora() == hourOfWeek) {
-				haytendencia = true;
-				tendenciaFinal.add(tenTemp);
-			}
-		}
-		int falta = countLista - tendenciaFinal.size();
-		if (falta > 0) {
-			int veces = falta / countTendencia;
-			for (int i = 0; i < veces; i++) {
-				tendenciaFinal.addAll(listaTendencia);
-			}
-			veces = falta % countTendencia;
-			for (int i = 0; i < veces; i++) {
-				tendenciaFinal.add(listaTendencia.get(i));
-			}
-		}
-
-		if (haytendencia) {
-
-			serie = serie + ",{\"seriesname\":  \"" + "Tendencia-" + mapaItem.getMapaapp() + "\", \"data\": [";
-
-			for (Tendencia tempTendencia : tendenciaFinal) {
-
-				if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT1.campoBD()))
-					tendencia = tempTendencia.getFloat1();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT2.campoBD()))
-					tendencia = tempTendencia.getFloat2();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT3.campoBD()))
-					tendencia = tempTendencia.getFloat3();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT4.campoBD()))
-					tendencia = tempTendencia.getFloat4();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT5.campoBD()))
-					tendencia = tempTendencia.getFloat5();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
-					tendencia = tempTendencia.getInt1();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
-					tendencia = tempTendencia.getInt2();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
-					tendencia = tempTendencia.getInt3();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
-					tendencia = tempTendencia.getInt4();
-				else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
-					tendencia = tempTendencia.getInt5();
-
-				if (!pVez) {
-					serie = serie + ",";
-				} else
-					pVez = false;
-				serie = serie + " { \"value\":\"" + tendencia + "\"}";
-
-			}
-
-			serie = serie + "]}";
-		}
-		System.out.println(serie);
-		return serie;
 	}
 
 	/**
@@ -523,37 +427,39 @@ public class ToJson {
 		for (MediaMovil mediaMovil : listaMedia) {
 			float tendencia = 0f;
 
-			if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT1.campoBD()))
+			if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT1.campoBD())) {
 				tendencia = mediaMovil.getFloat1();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT2.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT2.campoBD())) {
 				tendencia = mediaMovil.getFloat2();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT3.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT3.campoBD())) {
 				tendencia = mediaMovil.getFloat3();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT4.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT4.campoBD())) {
 				tendencia = mediaMovil.getFloat4();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT5.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.FLOAT5.campoBD())) {
 				tendencia = mediaMovil.getFloat5();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD())) {
 				tendencia = mediaMovil.getInt1();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD())) {
 				tendencia = mediaMovil.getInt2();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD())) {
 				tendencia = mediaMovil.getInt3();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD())) {
 				tendencia = mediaMovil.getInt4();
-			else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD()))
+			} else if (mapaItem.getMapabd().getNombre().equals(Constantes.CampoRegistro.INT1.campoBD())) {
 				tendencia = mediaMovil.getInt5();
+			}
 
 			if (!pVez) {
 				serie = serie + ",";
-			} else
+			} else {
 				pVez = false;
+			}
 			serie = serie + " { \"value\":\"" + tendencia + "\"}";
 
 		}
 		serie = serie + "]}";
 
-		System.out.println(serie);
+		// System.out.println(serie);
 		return serie;
 	}
 
@@ -565,8 +471,9 @@ public class ToJson {
 		// TODO Auto-generated method stub
 		int respuesta = 0;
 		respuesta = i - 2;
-		if (respuesta == -1)
+		if (respuesta == -1) {
 			respuesta = 0;
+		}
 
 		return respuesta;
 	}
@@ -587,8 +494,9 @@ public class ToJson {
 
 			if (!pVez) {
 				serie = serie + ",";
-			} else
+			} else {
 				pVez = false;
+			}
 			serie = serie + " { \"value\":\"" + percentil + "\"}";
 
 		}
@@ -607,10 +515,11 @@ public class ToJson {
 
 			serie = serie + ",{\"seriesname\":  \"" + "Umbral-" + mapaItem.getMapaapp() + "\", \"data\": [";
 			for (int i = 0; i < countLista; i++) {
-				if (pVez)
+				if (pVez) {
 					pVez = false;
-				else
+				} else {
 					serie = serie + ",";
+				}
 
 				serie = serie + " { \"value\":\"" + umbral + "\"}";
 
@@ -668,7 +577,7 @@ public class ToJson {
 
 	/**
 	 * crea Json
-	 * 
+	 *
 	 * @return el id guardado en la base de datos en la tabla fateon_Json
 	 * @throws SQLException
 	 * @throws JsonIOException
@@ -691,21 +600,21 @@ public class ToJson {
 
 	/**
 	 * @throws SQLException
-	 * 
+	 *
 	 */
 	private void buscarMediaMovil() throws SQLException {
 		listaMedia = null;
-		if (reducido)
-			listaMedia = BdManager.buscarMediaMovil(sensor, origen, habil,reducido);
-
-		else
-		listaMedia = BdManager.buscarMediaMovil(sensor, origen, habil);
+		if (reducido) {
+			listaMedia = BdManager.buscarMediaMovil(sensor, origen, habil, reducido);
+		} else {
+			listaMedia = BdManager.buscarMediaMovil(sensor, origen, habil);
+		}
 
 	}
 
 	/**
 	 * @throws SQLException
-	 * 
+	 *
 	 */
 	private void buscarTendencia() throws SQLException {
 		listaTendencia = null;
@@ -727,11 +636,11 @@ public class ToJson {
 	private void buscarRegistros() throws SQLException {
 		// TODO Auto-generated method stub
 		ToJson.listaRegistro = null;
-		if (reducido)
+		if (reducido) {
 			ToJson.listaRegistro = BdManager.consultarRegistro(origen, sensor, habil, TablaBD.REGISTRO_REDUCIDO);
-
-		else
+		} else {
 			ToJson.listaRegistro = BdManager.consultarRegistro(origen, sensor, habil);
+		}
 
 	}
 

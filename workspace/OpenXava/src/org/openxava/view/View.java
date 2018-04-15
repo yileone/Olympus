@@ -518,37 +518,37 @@ public class View implements java.io.Serializable {
 	}
 	
 	public void setValues(Map values) throws XavaException {	
-		System.out.println("****************12.11.0 ********************" );
+		//System.out.println("****************12.11.0 ********************" );
 		boolean modelChanged = false;
-		System.out.println("****************12.11.1 ********************" );
+		//System.out.println("****************12.11.1 ********************" );
 		if (values != null) {
-			System.out.println("****************12.11.2 ********************" );
+			//System.out.println("****************12.11.2 ********************" );
 			String modelName = (String) values.get(MapFacade.MODEL_NAME);
-			System.out.println("****************12.11.3 ********************" );
+			//System.out.println("****************12.11.3 ********************" );
 			if (modelName != null && !modelName.equals(getModelName()) && !getModelName().contains(".")) {
 				
-				System.out.println("****************12.11.4********************" );
+				//System.out.println("****************12.11.4********************" );
 				rootModelName = getModelName();
-				System.out.println("****************12.11.5 ********************" );
+				//System.out.println("****************12.11.5 ********************" );
 				String viewName = getViewName(); 
-				System.out.println("****************12.11.6 ********************" );
+				//System.out.println("****************12.11.6 ********************" );
 				setModelName(modelName);
-				System.out.println("****************12.11.7 ********************" );
+				//System.out.println("****************12.11.7 ********************" );
 				setViewName(viewName); 
-				System.out.println("****************12.11.8 ********************" );
+				//System.out.println("****************12.11.8 ********************" );
 				modelChanged = true;
-				System.out.println("****************12.11.9 ********************" );
+				//System.out.println("****************12.11.9 ********************" );
 			}
 		}	
-		System.out.println("****************12.11.10 ********************" );
+		//System.out.println("****************12.11.10 ********************" );
 		setValues(values, true);
-		System.out.println("****************12.11.11 ********************" );
+		//System.out.println("****************12.11.11 ********************" );
 		if (modelChanged) {
-			System.out.println("****************12.11.12 ********************" );
+			//System.out.println("****************12.11.12 ********************" );
 			refresh();
-			System.out.println("****************12.11.13 ********************" );
+			//System.out.println("****************12.11.13 ********************" );
 			} 		
-		System.out.println("****************12.11.14 ********************" );
+		//System.out.println("****************12.11.14 ********************" );
 	}
 	
 	private void initDefaultValues() {
@@ -2050,15 +2050,15 @@ public class View implements java.io.Serializable {
 	 * Clear all displayed data.  
 	 */
 	public void clear() throws XavaException {
-		System.out.println("****************12.4*********************");
+		//System.out.println("****************12.4*********************");
 		if (rootModelName != null) {
-			System.out.println("****************12.5*********************");
+			//System.out.println("****************12.5*********************");
 			String viewName = getViewName(); 
-			System.out.println("****************12.6*********************");
+			//System.out.println("****************12.6*********************");
 			setModelName(rootModelName); 
-			System.out.println("****************12.7*********************");
+			//System.out.println("****************12.7*********************");
 			setViewName(viewName);  
-			System.out.println("****************12.8*********************");
+			//System.out.println("****************12.8*********************");
 			rootModelName = null;
 		}
 
@@ -2466,21 +2466,21 @@ public class View implements java.io.Serializable {
 	}
 	
 	public void setModelName(String newModel) { 
-		System.out.println("****************12.10.1 ********************"+newModel );
+		//System.out.println("****************12.10.1 ********************"+newModel );
 		if (Is.equal(modelName, newModel)) {
-			System.out.println("****************12.10.2 ********************" );
+			//System.out.println("****************12.10.2 ********************" );
 			return;
 			}	
-		System.out.println("****************12.10.3 ********************" );
+		//System.out.println("****************12.10.3 ********************" );
 		modelName = newModel;
-		System.out.println("****************12.10.4 ********************"+modelName);
+		//System.out.println("****************12.10.4 ********************"+modelName);
 		getRoot().reloadNeeded = true; // If the model of the view of a reference changes, the main view must be reloaded.
-		System.out.println("****************12.10.5 ********************" );
+		//System.out.println("****************12.10.5 ********************" );
 		resetMembers();		
-		System.out.println("****************12.10.6 ********************" );
+		//System.out.println("****************12.10.6 ********************" );
 		if (model != null && !model.getClass().getSimpleName().equals(modelName)){
 			model = null; 
-			System.out.println("****************12.10.7 ********************" );
+			//System.out.println("****************12.10.7 ********************" );
 		}
 	}
 	
@@ -3342,22 +3342,22 @@ public class View implements java.io.Serializable {
 	 */
 	public void setModel(Object model) { 
 		
-		System.out.println("****************12.1*********************");
+		//System.out.println("****************12.1*********************");
 		this.model = model;
-		System.out.println("****************12.2*********************");
+		//System.out.println("****************12.2*********************");
 		if (model == null) {
-			System.out.println("****************12.3*********************");
+			//System.out.println("****************12.3*********************");
 			clear();
-			System.out.println("****************12.8*********************");
+			//System.out.println("****************12.8*********************");
 			return;
 		}
-		System.out.println("****************12.9*********************");
+		//System.out.println("****************12.9*********************");
 		refreshCollections();  
-		System.out.println("****************12.10*********************");
+		//System.out.println("****************12.10*********************");
 		setModelName(model.getClass().getSimpleName());
-		System.out.println("****************12.11*********************" + getModelName());
+		//System.out.println("****************12.11*********************" + getModelName());
 		setValues(MapFacade.getValues(getModelName(), model, getMembersNamesWithHidden()));		
-		System.out.println("****************12.12*********************");
+		//System.out.println("****************12.12*********************");
 	}
 	
 	/**
