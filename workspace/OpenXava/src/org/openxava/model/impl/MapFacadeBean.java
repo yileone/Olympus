@@ -1492,23 +1492,23 @@ public class MapFacadeBean implements IMapFacadeImpl, SessionBean {
 						}
 						
 				} else if (metaModel.containsMetaCollection(memberName)) {
-					System.out.println("validate dentro9");
+					//System.out.println("validate dentro9");
 					MetaCollection metaCollection = metaModel.getMetaCollection(memberName);
 					if (metaCollection.isElementCollection()) {
-						System.out.println("validate dentro10");
+						//System.out.println("validate dentro10");
 						metaCollection.validate(errors, values, null, null);
 						MetaModel elementMetaModel = metaCollection.getMetaReference().getMetaModelReferenced();
 						Collection collection = (Collection) values;
 						for (Object e: collection) {
-							System.out.println("validate dentro11");
+							//System.out.println("validate dentro11");
 							validate(errors, elementMetaModel, (Map) e, null, null, creating); 
 						}	
 					}
 				} else if (metaModel.containsMetaPropertyView(memberName)) {
-					System.out.println("validate dentro12");
+					//System.out.println("validate dentro12");
 					metaModel.getMetaPropertyView(memberName).validate(errors, values, creating);									
 				} else {	
-					System.out.println("validate dentro13");
+					//System.out.println("validate dentro13");
 					log.warn(XavaResources.getString("not_validate_member_warning", memberName, metaModel.getName()));
 				}
 		} catch (XavaException ex) {
@@ -1536,24 +1536,24 @@ public class MapFacadeBean implements IMapFacadeImpl, SessionBean {
 	
 	private void validate(Messages errors, MetaModel metaModel, Map values, Map keyValues, Object container, boolean creating)	  
 		throws ObjectNotFoundException, XavaException, RemoteException {
-		System.out.println("=============================");
+		//System.out.println("=============================");
 		Iterator it = values.entrySet().iterator();	
-		System.out.println("validate");
+		//System.out.println("validate");
 		while (it.hasNext()) {
-			System.out.println("validate1");
+			//System.out.println("validate1");
 			Map.Entry en = (Map.Entry) it.next();
 			String name = (String) en.getKey();
 			Object value = en.getValue();
-			System.out.println(name);
+			//System.out.println(name);
 			validate(errors, metaModel, name, value, creating);
 		}
-		System.out.println("validate2");
+		//System.out.println("validate2");
 		if (metaModel.containsValidadors()) {
-			System.out.println("validate3");
+			//System.out.println("validate3");
 			validateWithModelValidator(errors, metaModel, values, keyValues, container, creating);	
-			System.out.println("validate4");
+			//System.out.println("validate4");
 		}
-		System.out.println("validat5");
+		//System.out.println("validat5");
 	}
 	
 	private void validateWithModelValidator(Messages errors, MetaModel metaModel, Map values, Map keyValues, Object container, boolean creating) 

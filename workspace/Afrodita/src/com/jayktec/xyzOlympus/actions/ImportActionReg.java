@@ -46,9 +46,9 @@ public class ImportActionReg extends ViewBaseAction implements IChangeController
 		assert origenOid == getOrigenOid();
 		assert sensorOid == getSensorOid();
 
-		System.out.println("    SENSOR : " + getSensorOid());
-		System.out.println("    ORIGEN : " + getOrigenOid());
-		System.out.println("");
+		// System.out.println(" SENSOR : " + getSensorOid());
+		// System.out.println(" ORIGEN : " + getOrigenOid());
+		// System.out.println("");
 		/*
 		 * System.out.println("*************************************");
 		 * System.out.println("");
@@ -67,7 +67,7 @@ public class ImportActionReg extends ViewBaseAction implements IChangeController
 			return;
 
 		} else {
-			System.out.println("PASO");
+			// System.out.println("PASO");
 		}
 		/* System.out.println("******************* Despues ******************"); */
 		@SuppressWarnings("resource")
@@ -93,7 +93,7 @@ public class ImportActionReg extends ViewBaseAction implements IChangeController
 					break;
 				}
 				String rawValue = fields.nextToken();
-				System.out.println("rawvalue:" + rawValue);
+				// System.out.println("rawvalue:" + rawValue);
 				if (!Is.empty(column.getNameInApp())) {
 					View moduleView = getPreviousView();
 					MetaProperty p = moduleView.getMetaModel().getMetaProperty(column.getNameInApp());
