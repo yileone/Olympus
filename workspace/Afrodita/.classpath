@@ -10,13 +10,13 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/OpenXava"/>
 	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/gson-2.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jcommon-1.0.15.jar"/>
-	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jasperreports-6.5.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jasperreports-fonts-6.5.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/OpenXava/lib/jasperreports-javaflow-6.5.1.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/OpenXava/lib/jasperreports-6.5.1.jar"/>
+	<classpathentry kind="lib" path="/OpenXava/lib/jasperreports-fonts-6.5.1.jar"/>
+	<classpathentry kind="lib" path="/OpenXava/lib/jasperreports-javaflow-6.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -3,17 +3,26 @@
  */
 package com.jayktec.batch.reportes;
 
-import java.text.*;
-import java.util.*;
+import java.text.ParseException;
+import java.util.Map;
 
-import com.jayktec.batch.*;
-import com.jayktec.controlador.*;
-import com.jayktec.controlador.Constantes.*;
-import com.jayktec.controller.*;
+import com.jayktec.batch.Ejecucion;
+import com.jayktec.controlador.Constantes;
+import com.jayktec.controlador.Constantes.Reporte;
+import com.jayktec.controller.Conexion;
 
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.export.*;
-import net.sf.jasperreports.export.*;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.export.JRXlsExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 
 /**
  * @author {Yisheng León Espinoza} 12 abr. 2018 www.jayktec.com.ve
@@ -38,6 +47,20 @@ public class EjecucionReportes extends Ejecucion {
 
 	public void compilarJRxml(String jrxml, String jasper) throws JRException {
 		JasperCompileManager.compileReportToFile(jrxml, jasper);
+	}
+
+	public void docExporter(JasperPrint jasperPrint) throws JRException {
+		final JRDocxExporter exporter = new JRDocxExporter();
+
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile + ".docx"));
+		final SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
+		configuration.setOnePagePerSheet(true);
+		configuration.setDetectCellType(true);
+		configuration.setCollapseRowSpan(false);
+		// exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
 	}
 
 	/**
@@ -71,14 +94,10 @@ public class EjecucionReportes extends Ejecucion {
 	public void pdfExporter(JasperPrint jasperPrint) throws JRException {
 		final JRPdfExporter exporter = new JRPdfExporter();
 
-		// exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-		// exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile +
-		// ".xls"));
-		final SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
-		configuration.setOnePagePerSheet(true);
-		configuration.setDetectCellType(true);
-		configuration.setCollapseRowSpan(false);
-		// exporter.setConfiguration(configuration);
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile + ".pdf"));
+		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		exporter.setConfiguration(configuration);
 
 		exporter.exportReport();
 	}
@@ -97,8 +116,10 @@ public class EjecucionReportes extends Ejecucion {
 					conexion.getConexion());
 			if (getTipoReporte().equals(Constantes.Reporte.Pdf)) {
 				pdfExporter(jasperPrint);
+			} else if (getTipoReporte().equals(Constantes.Reporte.Xls)) {
+				pdfExporter(jasperPrint);
 			} else {
-				xlsExporter(jasperPrint);
+				docExporter(jasperPrint);
 			}
 
 		} catch (final JRException e) {
@@ -142,9 +163,8 @@ public class EjecucionReportes extends Ejecucion {
 	public void xlsExporter(JasperPrint jasperPrint) throws JRException {
 		final JRXlsExporter exporter = new JRXlsExporter();
 
-		// exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-		// exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile +
-		// ".xls"));
+		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile + ".xls"));
 		final SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
 		configuration.setOnePagePerSheet(true);
 		configuration.setDetectCellType(true);
@@ -153,5 +173,4 @@ public class EjecucionReportes extends Ejecucion {
 
 		exporter.exportReport();
 	}
-
 }

@@ -9,7 +9,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/portlet-api-1.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/dom4j.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/commons-collections.jar"/>
-	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/jasperreports.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/antlr.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/javassist.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/commons-validator.jar"/>
@@ -71,5 +70,8 @@
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/poi.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/jsoup.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/poi-ooxml.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-fonts-6.5.1.jar"/>
+	<classpathentry kind="lib" path="lib/jasperreports-javaflow-6.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
