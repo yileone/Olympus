@@ -1,11 +1,10 @@
 package com.jayktec.xyzOlympus.actions;
 
-import javax.inject.*;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-import org.openxava.actions.*;
-
-import com.jayktec.controlador.*;
-import com.jayktec.persistencia.*;
+import org.openxava.actions.ILoadFileAction;
+import org.openxava.actions.ViewBaseAction;
 
 /**
  *
@@ -43,12 +42,21 @@ public class ImportDataActionReg extends ViewBaseAction implements ILoadFileActi
 		 * System.out.println("");
 		 * System.out.println("*************************************");
 		 */
-		System.out.println("TRUNCATE TABLE " + Constantes.TablaBD.REGISTRO);
-
-		BdManager.truncarTabla(Constantes.TablaBD.REGISTRO);
 
 		showDialog();
 
+	}
+
+	@Override
+	public String getCustomView() {
+		/*
+		 * System.out.println("*************************************");
+		 * System.out.println(""); System.out.
+		 * println("INVOCANDO EL JSP: chooseFile.jsp en el action ---> ImportDataActionReg"
+		 * ); System.out.println("");
+		 * System.out.println("*************************************");
+		 */
+		return "xava/editors/chooseFile.jsp?accept=.csv, .xlsx, .xls";
 	}
 
 	@Override
@@ -67,16 +75,12 @@ public class ImportDataActionReg extends ViewBaseAction implements ILoadFileActi
 		return new String[] { "ConfigureImportReg" };
 	}
 
-	@Override
-	public String getCustomView() {
-		/*
-		 * System.out.println("*************************************");
-		 * System.out.println(""); System.out.
-		 * println("INVOCANDO EL JSP: chooseFile.jsp en el action ---> ImportDataActionReg"
-		 * ); System.out.println("");
-		 * System.out.println("*************************************");
-		 */
-		return "xava/editors/chooseFile.jsp?accept=.csv, .xlsx, .xls";
+	public String getOrigenOid() {
+		return origenOid;
+	}
+
+	public String getSensorOid() {
+		return sensorOid;
 	}
 
 	@Override
@@ -84,16 +88,8 @@ public class ImportDataActionReg extends ViewBaseAction implements ILoadFileActi
 		return true;
 	}
 
-	public String getOrigenOid() {
-		return origenOid;
-	}
-
 	public void setOrigenOid(String origenOid) {
 		this.origenOid = origenOid;
-	}
-
-	public String getSensorOid() {
-		return sensorOid;
 	}
 
 	public void setSensorOid(String sensorOid) {
