@@ -1,10 +1,8 @@
 package com.jayktec.xyzOlympus.actions;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.inject.*;
 
-import org.openxava.actions.ILoadFileAction;
-import org.openxava.actions.ViewBaseAction;
+import org.openxava.actions.*;
 
 /**
  *
@@ -30,7 +28,7 @@ public class ImportDataActionReg extends ViewBaseAction implements ILoadFileActi
 		 * System.out.println("    ACTION : ImportDataActionReg" );
 		 * System.out.println("NEXTACTION : ConfigureImportReg" );
 		 */
-		System.out.println("    MODELO : " + getView().getModelName());
+		// System.out.println(" MODELO : " + getView().getModelName());
 		setSensorOid((String) getView().getValue("sensor.oid"));
 		setOrigenOid((String) getView().getValue("origen.oid"));
 		assert origenOid == getOrigenOid();
