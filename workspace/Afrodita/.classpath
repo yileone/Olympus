@@ -20,6 +20,6 @@
 	<classpathentry kind="lib" path="/OpenXava/web/WEB-INF/lib/commons-beanutils.jar"/>
 	<classpathentry kind="lib" path="/OpenXava/web/WEB-INF/lib/commons-digester.jar"/>
 	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/com.lowagie.text-2.1.7.jar"/>
-	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/poi-3.7.jar"/>
+	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/poi-3.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -73,11 +73,11 @@
 	<classpathentry kind="lib" path="lib/jasperreports-6.5.1.jar" sourcepath="/home/arte/Descargas/jasperreports-6.5.1-project/jasperreports-6.5.1"/>
 	<classpathentry kind="lib" path="lib/jasperreports-fonts-6.5.1.jar"/>
 	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/commons-beanutils-1.8.3.jar"/>
-	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/commons-collections-3.2.1-1.0.0.jar"/>
 	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/commons-digester-2.1.jar"/>
 	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/commons-logging-1.2.1.1.jar"/>
 	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/iText-2.1.7.jar"/>
 	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/com.lowagie.text-2.1.7.jar"/>
-	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/poi-3.7.jar"/>
+	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="/home/arte/proyecto/Olympus/workspace/OpenXava/lib/poi-3.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
