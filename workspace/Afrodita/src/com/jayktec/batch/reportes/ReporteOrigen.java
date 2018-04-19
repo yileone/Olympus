@@ -26,7 +26,7 @@ public class ReporteOrigen extends EjecucionReportes {
 		// TODO Auto-generated method stub
 
 		final ReporteOrigen rOrigen = new ReporteOrigen();
-		rOrigen.setTipoReporte(Constantes.Reporte.Pdf);
+		rOrigen.setTipoReporte(Constantes.Reporte.Xls);
 		rOrigen.run();
 	}
 

@@ -177,6 +177,7 @@ public class JxlsCell {
 		return style;
 	}
 		
+	@SuppressWarnings("deprecation")
 	protected void createPOICell(JxlsWorkbook workbook, Sheet sheet, Map<Integer, JxlsStyle> columnStyles) {
 		if (style == null) {
 			if (columnStyles.containsKey(column)) style =  columnStyles.get(column);
