@@ -15,11 +15,11 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="/OpenXava/web/WEB-INF/lib/commons-beanutils.jar"/>
 	<classpathentry exported="true" kind="lib" path="/OpenXava/web/WEB-INF/lib/commons-digester.jar"/>
-	<classpathentry exported="true" kind="lib" path="/home/arte/proyecto/Olympus/workspace/Afrodita/lib/poi-3.17.jar"/>
-	<classpathentry exported="true" kind="lib" path="/home/arte/proyecto/Olympus/workspace/Afrodita/lib/com.lowagie.text-2.1.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="/home/arte/proyecto/Olympus/workspace/Afrodita/lib/jasperreports-6.5.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/home/arte/proyecto/Olympus/workspace/Afrodita/lib/jasperreports-fonts-6.5.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/home/arte/proyecto/Olympus/workspace/Afrodita/lib/jasperreports-javaflow-6.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/com.lowagie.text-2.1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jasperreports-6.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jasperreports-fonts-6.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jasperreports-javaflow-6.5.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/poi-3.17.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/OpenXava"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
