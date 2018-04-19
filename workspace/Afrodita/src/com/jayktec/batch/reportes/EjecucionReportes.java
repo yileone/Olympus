@@ -3,6 +3,7 @@
  */
 package com.jayktec.batch.reportes;
 
+import java.io.InputStream;
 import java.text.ParseException;
 import java.util.Map;
 
@@ -13,16 +14,19 @@ import com.jayktec.controller.Conexion;
 
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.export.SimpleDocxReportConfiguration;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
+import net.sf.jasperreports.export.type.PdfVersionEnum;
 
 /**
  * @author {Yisheng León Espinoza} 12 abr. 2018 www.jayktec.com.ve
@@ -42,11 +46,25 @@ public class EjecucionReportes extends Ejecucion {
 	public EjecucionReportes() {
 		// TODO Auto-generated constructor stub
 		super();
+		final String treporte = valorParametro(Constantes.TipoParametro.TipoReporte.tipo());
+		if (treporte.toUpperCase().equals(Constantes.Reporte.Pdf.tipo())) {
+			setTipoReporte(Constantes.Reporte.Pdf);
+		} else if (treporte.toUpperCase().equals(Constantes.Reporte.Xls.tipo())) {
+			setTipoReporte(Constantes.Reporte.Xls);
+		} else if (treporte.toUpperCase().equals(Constantes.Reporte.Docx.tipo())) {
+			setTipoReporte(Constantes.Reporte.Docx);
+		} else {
+			setTipoReporte(Constantes.Reporte.Pdf);
+		}
 
 	}
 
-	public void compilarJRxml(String jrxml, String jasper) throws JRException {
-		JasperCompileManager.compileReportToFile(jrxml, jasper);
+	public void compilarJRxml(InputStream jrxml) throws JRException {
+		setReporte(JasperCompileManager.compileReport(jrxml));
+	}
+
+	public void compilarJRxml(String jrxml) throws JRException {
+		setReporte(JasperCompileManager.compileReport(jrxml));
 	}
 
 	public void docExporter(JasperPrint jasperPrint) throws JRException {
@@ -54,11 +72,9 @@ public class EjecucionReportes extends Ejecucion {
 
 		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
 		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile + ".docx"));
-		final SimpleXlsReportConfiguration configuration = new SimpleXlsReportConfiguration();
-		configuration.setOnePagePerSheet(true);
-		configuration.setDetectCellType(true);
-		configuration.setCollapseRowSpan(false);
-		// exporter.setConfiguration(configuration);
+		final SimpleDocxReportConfiguration configuration = new SimpleDocxReportConfiguration();
+
+		exporter.setConfiguration(configuration);
 
 		exporter.exportReport();
 	}
@@ -85,6 +101,13 @@ public class EjecucionReportes extends Ejecucion {
 	}
 
 	/**
+	 * @return the reporte
+	 */
+	public JasperReport getReporte() {
+		return reporte;
+	}
+
+	/**
 	 * @return the tipoReporte
 	 */
 	public Reporte getTipoReporte() {
@@ -97,9 +120,12 @@ public class EjecucionReportes extends Ejecucion {
 		exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
 		exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(destFile + ".pdf"));
 		final SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		configuration.setTagged(false);
+		configuration.setPdfVersion(PdfVersionEnum.VERSION_1_7);
 		exporter.setConfiguration(configuration);
 
-		exporter.exportReport();
+		// exporter.exportReport();
+		JasperExportManager.exportReportToPdfFile(jasperPrint, destFile + ".pdf");
 	}
 
 	/*
@@ -117,7 +143,7 @@ public class EjecucionReportes extends Ejecucion {
 			if (getTipoReporte().equals(Constantes.Reporte.Pdf)) {
 				pdfExporter(jasperPrint);
 			} else if (getTipoReporte().equals(Constantes.Reporte.Xls)) {
-				pdfExporter(jasperPrint);
+				xlsExporter(jasperPrint);
 			} else {
 				docExporter(jasperPrint);
 			}
@@ -153,6 +179,14 @@ public class EjecucionReportes extends Ejecucion {
 	}
 
 	/**
+	 * @param reporte
+	 *            the reporte to set
+	 */
+	public void setReporte(JasperReport reporte) {
+		this.reporte = reporte;
+	}
+
+	/**
 	 * @param tipoReporte
 	 *            the tipoReporte to set
 	 */
@@ -169,8 +203,9 @@ public class EjecucionReportes extends Ejecucion {
 		configuration.setOnePagePerSheet(true);
 		configuration.setDetectCellType(true);
 		configuration.setCollapseRowSpan(false);
-		// exporter.setConfiguration(configuration);
+		exporter.setConfiguration(configuration);
 
 		exporter.exportReport();
 	}
+
 }

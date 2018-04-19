@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test1" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa98447d-db0e-4aff-83b1-cbd1291d5a4a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select 
+ (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_tipo) as tipo,
+  (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_sistema) as sistema,
+   (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_sucursal) as sucursal,
+   (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_oficina) as oficina,
+   (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_municipio) as municipio,
+   (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_ciudad) as ciudad,
+   (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_pais) as pais,
+   (select catalogo_descripcion_varchar from fateon_new.fateon_catalogo where catalogo_id=x.origen_id_provincia) as provincia,
+      origen_modelo,
+      origen_mac,
+      origen_ip,
+      hora_apertura,
+      hora_cierre
+  ,x.*  
+from 
+	fateon_new.fateon_origen x]]>
+	</queryString>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="sistema" class="java.lang.String"/>
+	<field name="sucursal" class="java.lang.String"/>
+	<field name="oficina" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="ciudad" class="java.lang.String"/>
+	<field name="pais" class="java.lang.String"/>
+	<field name="provincia" class="java.lang.String"/>
+	<field name="origen_modelo" class="java.lang.String"/>
+	<field name="origen_mac" class="java.lang.String"/>
+	<field name="origen_ip" class="java.lang.String"/>
+	<field name="hora_apertura" class="java.sql.Time"/>
+	<field name="hora_cierre" class="java.sql.Time"/>
+	<field name="origen_id" class="java.lang.String"/>
+	<field name="origen_nombre" class="java.lang.String"/>
+	<field name="origen_id_tipo" class="java.lang.String"/>
+	<field name="origen_id_sistema" class="java.lang.String"/>
+	<field name="origen_id_sucursal" class="java.lang.String"/>
+	<field name="origen_id_oficina" class="java.lang.String"/>
+	<field name="origen_id_municipio" class="java.lang.String"/>
+	<field name="origen_id_ciudad" class="java.lang.String"/>
+	<field name="origen_id_pais" class="java.lang.String"/>
+	<field name="origen_id_provincia" class="java.lang.String"/>
+	<group name="origen_id_pais">
+		<groupExpression><![CDATA[$F{origen_id_pais}]]></groupExpression>
+	</group>
+	<group name="Group1">
+		<groupExpression><![CDATA[$F{origen_id}]]></groupExpression>
+		<groupHeader>
+			<band height="27" splitType="Stretch">
+				<frame>
+					<reportElement uuid="70a0ad8f-4d16-4411-bfa3-a367270c2127" mode="Opaque" x="0" y="3" width="197" height="24" forecolor="#B89F7D" backcolor="#000000"/>
+					<textField isStretchWithOverflow="true">
+						<reportElement uuid="02875276-dfb2-4b43-b0f6-3ac67a609751" x="2" y="0" width="69" height="24" forecolor="#FFFFFF"/>
+						<textElement>
+							<font isBold="false"/>
+							<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{pais}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<textField>
+					<reportElement uuid="420cb7ee-4109-4f0c-97f9-95e1b0f0ebd5" x="238" y="7" width="72" height="15"/>
+					<textElement>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="05da976a-afb4-41d4-882a-8ab69618778e" x="392" y="7" width="72" height="15"/>
+					<textElement>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{municipio}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="c1261fc0-cf08-4103-8252-8792d80ed490" x="546" y="3" width="72" height="15"/>
+					<textElement>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ciudad}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6" splitType="Stretch"/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupExpression><![CDATA[$F{origen_nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="30" splitType="Stretch">
+				<staticText>
+					<reportElement uuid="a6c9b556-bbb9-477b-9d95-7ea6fd3eb6f8" x="14" y="0" width="94" height="30"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<text><![CDATA[Oficina:]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="4bc0a6d6-b97c-42ed-8b74-fa09d6215ed5" x="126" y="0" width="169" height="30"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{oficina}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="c2a43810-e42a-4d8a-9680-c44675c2e661" x="294" y="2" width="121" height="26"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<text><![CDATA[Hora Apertura:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="18dd7b6a-8a98-4b8f-a810-535048a8e252" x="577" y="7" width="123" height="21"/>
+					<textElement>
+						<font size="14"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<text><![CDATA[Hora Cierre:
+]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="58943ec2-f2e5-4fd7-b04f-962a6b141344" x="420" y="3" width="125" height="25"/>
+					<textElement>
+						<font size="14"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("HH:mm:ss").format($F{hora_apertura})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="dc5a5820-5e43-4637-a52d-1d34ad215289" x="699" y="4" width="97" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("HH:mm:ss").format($F{hora_cierre})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="origen_modelo">
+		<groupExpression><![CDATA[$F{origen_modelo}]]></groupExpression>
+	</group>
+	<group name="origen_mac">
+		<groupExpression><![CDATA[$F{origen_mac}]]></groupExpression>
+	</group>
+	<group name="origen_id_tipo">
+		<groupExpression><![CDATA[$F{origen_id_tipo}]]></groupExpression>
+	</group>
+	<group name="origen_id_sistema">
+		<groupExpression><![CDATA[$F{origen_id_sistema}]]></groupExpression>
+	</group>
+	<group name="origen_id_sucursal">
+		<groupExpression><![CDATA[$F{origen_id_sucursal}]]></groupExpression>
+	</group>
+	<group name="origen_id_oficina">
+		<groupExpression><![CDATA[$F{origen_id_oficina}]]></groupExpression>
+	</group>
+	<group name="origen_id_municipio">
+		<groupExpression><![CDATA[$F{origen_id_municipio}]]></groupExpression>
+	</group>
+	<group name="origen_id_ciudad">
+		<groupExpression><![CDATA[$F{origen_id_ciudad}]]></groupExpression>
+	</group>
+	<group name="origen_ip">
+		<groupExpression><![CDATA[$F{origen_ip}]]></groupExpression>
+	</group>
+	<group name="origen_id_provincia">
+		<groupExpression><![CDATA[$F{origen_id_provincia}]]></groupExpression>
+	</group>
+	<group name="hora_apertura">
+		<groupExpression><![CDATA[$F{hora_apertura}]]></groupExpression>
+	</group>
+	<group name="hora_cierre">
+		<groupExpression><![CDATA[$F{hora_cierre}]]></groupExpression>
+	</group>
+	<title>
+		<band height="102" splitType="Stretch">
+			<frame>
+				<reportElement uuid="49754b5e-a7c6-4be7-97d1-377cf18da146" mode="Opaque" x="0" y="0" width="658" height="66" backcolor="#000000"/>
+				<staticText>
+					<reportElement uuid="1d952e62-718e-45e8-aeb1-9e54740196cc" style="Title" x="0" y="0" width="658" height="66"/>
+					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="false"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<text><![CDATA[Origen de la Señal]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement uuid="bab9f320-547e-4ca1-b469-b73e471394f3" mode="Opaque" x="0" y="70" width="802" height="32" forecolor="#000000" backcolor="#CC0000"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="382a3787-5528-4cc4-be75-43fbf8139459" x="644" y="12" width="144" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement uuid="8534ebe5-1e4e-4b33-8b26-5113341a218c" style="Row" mode="Opaque" x="0" y="0" width="797" height="18"/>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line direction="BottomUp">
+				<reportElement uuid="153dc7b9-cbf1-4c26-8c4d-658b6bbfaca2" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="5a95fe3e-6185-4df3-a3d2-c64ceb4013ee" mode="Opaque" x="0" y="0" width="802" height="25" forecolor="#D0B48E" backcolor="#000000"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="c24e1c1f-25df-46cf-a315-2c7bd9626688" style="Column header" x="757" y="3" width="40" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="9f45749f-e23c-4166-a6a3-43e2f6367ebe" style="Column header" x="677" y="3" width="80" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="494b405a-096b-48a9-ba1b-c3ba038b432a" style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+						<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

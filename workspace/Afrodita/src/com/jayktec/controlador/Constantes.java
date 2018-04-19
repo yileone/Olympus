@@ -34,7 +34,7 @@ public class Constantes {
 	}
 
 	public enum Reporte {
-		Pdf("PDF"), Xls("excel"), Docx("word");
+		Pdf("PDF"), Xls("EXCEL"), Docx("WORD");
 		private final String tipo;
 
 		private Reporte(String tipo) {
@@ -79,7 +79,7 @@ public class Constantes {
 	}
 
 	public enum TipoParametro {
-		MesTendencia("mesTendencia"), SerieMedia("serieMedia");
+		MesTendencia("mesTendencia"), SerieMedia("serieMedia"), TipoReporte("tipoReporte");
 		private final String tipo;
 
 		private TipoParametro(String tipo) {
